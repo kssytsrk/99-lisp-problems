@@ -8,5 +8,5 @@
 ;; (A C D)
 
 (defun my-remove-at (list k)
-  (cond ((eql k 1) (cdr list))
-        (t (append (list (car list)) (my-remove-at (cdr list) (- k 1))))))
+  (cond ((<= k 1) (cdr list))
+        (t (append (list (car list)) (my-remove-at (cdr list) (1- k))))))
