@@ -58,13 +58,8 @@
 (defun my-group3 (group &optional (sublengths '(2 3 4)))
   "Groups the elements of group into disjoint subsets of lengths from
    sublengths list (default values would be '(2 3 4)."
-  (let ((wipgroups '())              ; wipgroups - here i get sublists
-        (resgroups nil))             ; resgroups - here i push sublists
-
-    (dotimes (i (length sublengths)) ; building a "starting list"
-      (push nil wipgroups))
-    (setf wipgroups (list wipgroups))
-
+  (let ((wipgroups (make-list (length sublengths)))  ; wipgroups - here i get sublists
+        (resgroups nil))                             ; resgroups - here i push sublists
     (dolist (person group)
       (setf resgroups nil)
       (loop for wipgroup in wipgroups
