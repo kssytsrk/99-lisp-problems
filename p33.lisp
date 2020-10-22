@@ -13,6 +13,8 @@
 ;;; same number. coprime numbers can't be canonicalized, so if you compare
 ;;; string representations of a canonicalized nubmer ("35/64") and "a/b" (35/64)
 ;;; they will be the same string, unlike not-coprime numbers ("3/4" and "12/16")
+
 (defun my-coprime-p (a b)
-  (equal (format nil "~a" (/ a b))
-         (format nil "~a/~a" a b)))
+  (cond ((or (eql a 1) (eql b 1)) t)
+        (t (equal (format nil "~a" (/ a b))
+                  (format nil "~a/~a" a b)))))
