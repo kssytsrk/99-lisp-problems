@@ -11,7 +11,7 @@
   "Checks if a number is prime."
   (cond
     ((<= number 1) nil)
-    (t (progn (loop for i from 2 to (/ number 2)
+    (t (progn (loop for i from 2 to (sqrt number)
                  do (if (eql (rem number i) 0)
                         (return-from my-is-prime nil)))
               t))))
