@@ -8,7 +8,7 @@
 ;;;; * (prime-factors 315)
 ;;;; (3 3 5 7)
 
-(load "p31.lisp")
+(load "~/usr/dev/lisp/99-lisp-problems/p31.lisp")
 
 (defun my-prime-factors (n)
   "Determines the prime factors of a given positive integer and returns them in

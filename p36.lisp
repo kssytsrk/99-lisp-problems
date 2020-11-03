@@ -13,15 +13,15 @@
 
 (defun my-prime-factors-mult (n)
   (loop with i = 2
-        with counter = 0
         when (and (my-is-prime i) (eql 0 (rem n i)))
-          do (incf counter)
-             (setf n (/ n i))
+          count 1 into counter
+          and do (setf n (/ n i))
         else
           when (> counter 0)
-            collect (list i counter)
+            collect (list i counter) into result
             and do (setf counter 0)
           end
           and do (incf i)
-        do (print (list n i))
-        while (or (> n 1) (> counter 0))))
+        while (or (> n 1) (> counter 0))
+        finally (print result)
+                (return result)))
