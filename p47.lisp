@@ -23,10 +23,21 @@
   "Converts operators to functions (those defined by me) like this:
    '(A and (A or not B)) -> (.and A (.or A (not B)))"
   (cond
+    ;; if opexp is null
     ((null opexp) nil)
+    ;; if opexp is a single atom
     ((atom opexp) opexp)
+    ;; if opexp is a list with 1 element
     ((null (cdr opexp)) (ops-to-funcs (car opexp)))
+    ;; if opexp is a list with 2 elements
     ((null (cddr opexp)) opexp)
+    ;; if first element of opexp equals 'not
+    ;; 'not is different from other operators as it only takes one arg
+    ((eql (car opexp) 'not)
+     (ops-to-funcs (push (list (car opexp)
+                               (cadr opexp))
+                         (cddr opexp))))
+    ;; if opexp is a list with >2 elements and no 'not at the start
     (t (list (to-my-defns (cadr opexp))
              (ops-to-funcs (car opexp))
              (ops-to-funcs (cddr opexp))))))
