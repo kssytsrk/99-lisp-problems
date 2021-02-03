@@ -8,11 +8,11 @@
 (defun symmetric-p (tree)
   (%symmetric-p (second tree) (third tree)))
 
-(defun %symmetric-p (node1 node2)
+(defun mirror-p (node1 node2)
   (cond ((or (atom node1) (atom node2))
          (eq node1 node2))
         (t
-         (and (%symmetric-p (second node1)
+         (and (%symmetric-p (third node1)
                             (second node2))
-              (%symmetric-p (third node1)
+              (%symmetric-p (second node1)
                             (third node2))))))
