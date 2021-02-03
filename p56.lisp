@@ -11,8 +11,8 @@
 
 (defun mirror-p (node1 node2)
   "Check whether one binary tree is the mirror image of another."
-  (cond ((or (atom node1) (atom node2))
-         (eq node1 node2))
+  (cond ((atom node1) (atom node2))
+        ((atom node2) (atom node1))
         (t
          (and (%symmetric-p (third node1)
                             (second node2))
