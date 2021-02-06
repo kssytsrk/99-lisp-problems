@@ -7,14 +7,14 @@
 
 (defun symmetric-p (tree)
   "Check if a binary tree is symmetric."
-  (%symmetric-p (second tree) (third tree)))
+  (mirror-p (second tree) (third tree)))
 
 (defun mirror-p (node1 node2)
   "Check whether one binary tree is the mirror image of another."
   (cond ((atom node1) (atom node2))
         ((atom node2) (atom node1))
         (t
-         (and (%symmetric-p (third node1)
+         (and (mirror-p (third node1)
                             (second node2))
-              (%symmetric-p (second node1)
+              (mirror-p (second node1)
                             (third node2))))))
