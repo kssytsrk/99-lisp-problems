@@ -11,18 +11,15 @@
 ;;;; T = t(x, t(x, nil, nil), t(x, t(x, nil, nil), nil)) ;
 ;;;; etc......
 
-(defun flatten (x)
-  (labels ((rec (x acc)
-             (cond ((null x) acc)
-                   ((atom x) (cons x acc))
-                   (t (rec
-                       (car x)
-                       (rec (cdr x) acc))))))
-    (rec x nil)))
+(defun length-recursive (tree)
+  (cond ((null tree) 0)
+        (t (+ 1
+              (length-recursive (second tree))
+              (length-recursive (third  tree))))))
 
 (defun balp (tree)
-  (<= (abs (- (length (flatten (second tree)))
-              (length (flatten (third tree)))))
+  (<= (abs (- (length-recursive (second tree))
+              (length-recursive (third tree))))
       1))
 
 (defun generate-all (nodes1 nodes2)
