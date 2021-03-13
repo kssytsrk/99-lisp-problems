@@ -9,7 +9,7 @@
 ;;;; * istree(t(a,[t(f,[t(g,[])]),t(c,[]),t(b,[t(d,[]),t(e,[])])])).
 ;;;; Yes
 
-;;;; a multiway tree - (a #((f #((g #()))) (c #()) (b #((d #()) (e #(nil))))))
+;;;; a multiway tree - (a #((f #((g #()))) (c #()) (b #((d #()) (e #())))))
 
 (defun multreep (tree)
   (or (eql (length tree) 0)
