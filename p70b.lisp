@@ -12,7 +12,7 @@
 ;;;; a multiway tree - (a #((f #((g #()))) (c #()) (b #((d #()) (e #(nil))))))
 
 (defun multreep (tree)
-  (cond ((eql (length tree) 0))
-        ((and (eql (length tree) 2)
-               (arrayp (second tree))
-               (every #'multreep (second tree))))))
+  (or (eql (length tree) 0)
+      (and (eql (length tree) 2)
+           (arrayp (second tree))
+           (every #'multreep (second tree)))))
